@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+    <style>
+        #efeito {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+        .destaque {
+            background-color: red;
+            width: 200px !important;
+        }
+
+        .encolher {
+            background-color: gray;
+            width: 50px !important;
+        }
+
+        .perigo {
+            background-color: red;
+        }
+
+        .fundoCinza {
+            background-color: #cccccc;
+        }
+
+        .quadrado {
+            width: 100px;
+            height: 100px;
+        }
+
+        .direita {
+            float: right;
+        }
+
+        .barra-progresso {
+            height: 30px;
+            width: 500px;
+            border: 1px solid #000;
+        }
+
+        .progresso {
+            background-color: red;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="iniciarEfeito">Iniciar efeito</button>
+        <div id="efeito" :class="classe1"></div>
+        <hr>
+        <button @click="perigo=!perigo">Clique para mudar</button>
+        <div :class="[{perigo},{fundoCinza: !perigo},'quadrado']"></div>
+        <hr>
+        <input type="text" v-model="classe3">
+        <div :class="classe3"></div>
+        <hr>
+        <input type="text" placeholder="especifique a cor" v-model="cor5" />
+        <div :style="[estilo5, { backgroundColor: cor5}]"></div>
+        <hr>
+        <p>Barra de progresso</p>
+        <button @click="iniciarProgresso">Iniciar progresso</button>
+        <div class="barra-progresso">
+            <div class="progresso" :style="{width}"></div>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                classe1: 'destaque',
+                perigo: true,
+                classe3: 'quadrado perigo direita',
+                cor5: 'green',
+                width: '0',
+                estilo5: {
+                    height: '100px',
+                    width: '100px'
+                }
+            },
+            methods: {
+                iniciarEfeito() {
+                    setInterval(() => {
+                        this.classe1 = this.classe1 == 'destaque' ? 'encolher' : 'destaque';
+                    }, 1000);
+                },
+                iniciarProgresso() {
+                    let valor = 0;
+                    const temporizador = setInterval(() => {
+                        valor += 5;
+                        this.width = `${valor}%`;
+                        if (valor == 100) {
+                            clearInterval(temporizador);
+                        }
+                        //console.log(valor);
+                    }, 1000);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
