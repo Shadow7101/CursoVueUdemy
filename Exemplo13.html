@@ -14,8 +14,9 @@
     <body>
         <div id="app">
             <h3 style="color: red;">Iterando simples</h3>
+            <p><button @click="cores.push('Lilaz')">Add</button></p>
             <ul>
-                <li v-for="(cor, i) in cores">
+                <li v-for="(cor, i) in cores" :key="cor">
                     {{i}} {{cor}}
                 </li>
             </ul>
