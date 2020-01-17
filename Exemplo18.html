@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous" />
+        <title>Document</title>
+    </head>
+
+    <body>
+
+        <h1>Analisando o conceiro de componente</h1>
+
+        <div class="container-fluid">
+            <div id="app">
+                <h3>{{title}}</h3>
+                <comp1></comp1>
+                <comp1></comp1>
+                <comp1></comp1>
+                <comp1></comp1>
+            </div>
+        </div>
+
+        <script>
+
+
+            //registrando um componente de forma global no VUE
+            Vue.component('comp1', {
+                template: `<p>
+                {{nome}}  {{contador}}
+                <button @click="AcrescentarNoNome">Add</button>
+            </p>`,
+                data: function () {
+                    return {
+                        nome: "Meu primeiro componente",
+                        contador: 0
+                    }
+                },
+                methods: {
+                    AcrescentarNoNome() {
+                        this.nome += "$";
+                        this.contador++;
+                    }
+                }
+            });
+
+
+
+            //criando uma instancia no VUE
+            new Vue({
+                el: '#app',
+                data: {
+                    title: 'Minha app VUE'
+                },
+                methods: {
+
+                }
+            })
+        </script>
+    </body>
+
+</html>

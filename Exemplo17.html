@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <title>Document</title>
+    </head>
+
+    <body>
+        <h1>Montando a aplicação</h1>
+        <div id="app"></div>
+        <script>
+            //você pode armazenar a aplicação em uma variavel
+            const vm = new Vue({
+                template: `
+                <div>
+                    <h1>{{aula}}</h1>
+                    <h2>{{modulo}}</h2>
+                    <button @click="alterarAula">Alterar aula</button>
+                    <button @click="alterarModulo">Alterar modulo</button>
+                </div>
+                `,
+                data: {
+                    aula: 'Montando instancia do Vue',
+                    modulo: 'Trabalando com template'
+                },
+                methods: {
+                    alterarAula() {
+                        this.aula += "#";
+                    },
+                    alterarModulo() {
+                        this.modulo += "#";
+                    }
+                }
+            });
+            //e "montar" ela depois em um componente    
+            vm.$mount('#app');
+        </script>
+    </body>
+
+</html>
